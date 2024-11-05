@@ -75,14 +75,9 @@ public class Person {
         this.credentials = credentials;
     }
 
+
     public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                '}';
-    }
+        return "Person {id: " + id + ", name: " + firstName + " " + lastName + ", email: " + email + "}"; }
 
     @Override
     public boolean equals(Object o) {

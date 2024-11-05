@@ -18,11 +18,17 @@ public class PersonTest {
     public void testPersonCreationWithNullFirstName() {
         new Person(4, "Null", "Carlsson", "Test@test.se");
     }
+    @Test public void testToString() {
+        Person person = new Person(1,"Linus", "Carlsson", "Test@test.se");
+        String expectedString = "Person {id: 1, name: Linus Carlsson, email: Test@test.se}";
+        Assertions.assertEquals(expectedString, person.toString());
+    }
     @Test
-    public void testGetSummary() {
-        Person person = new Person( 4,"Linus", "Carlsson", "Test@test.se");
-        String expectedSummary = "Person {id: 4, name: Linus Carlsson, email: Test@test.se}";
-        Assertions.assertEquals(expectedSummary, person.toString());
+    public void testEqualAndHashCode(){
+        Person person1 = new Person(1, "Linus", "Carlsson", "Test@test.se");
+        Person person2 = new Person(1, "Linus", "Carlsson", "Test@test.se");
+        Assertions.assertEquals(person1, person2);
+        Assertions.assertEquals(person1.hashCode(), person2.hashCode());
     }
 
 
