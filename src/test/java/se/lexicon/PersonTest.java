@@ -22,7 +22,7 @@ public class PersonTest {
     public void testGetSummary() {
         Person person = new Person( 4,"Linus", "Carlsson", "Test@test.se");
         String expectedSummary = "Person {id: 4, name: Linus Carlsson, email: Test@test.se}";
-        Assertions.assertEquals(expectedSummary, person.getSummary());
+        Assertions.assertEquals(expectedSummary, person.toString());
     }
 
 
