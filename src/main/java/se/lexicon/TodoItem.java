@@ -1,8 +1,6 @@
 package se.lexicon;
 
 import java.time.LocalDate;
-
-import java.time.LocalDate;
 import java.util.Objects;
 
 public class TodoItem {
