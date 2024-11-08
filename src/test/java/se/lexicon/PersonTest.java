@@ -30,6 +30,12 @@ public class PersonTest {
         Assertions.assertEquals(person1, person2);
         Assertions.assertEquals(person1.hashCode(), person2.hashCode());
     }
+    @Test
+    public void testSetCredentials() {
+        Person person = new Person(1, "John", "Doo", "john.doo@example.com");
+        AppUser user = new AppUser("john_doo", "password123", AppRole.ROLE_APP_USER);
+        person.setCredentials(user); Assertions.assertEquals(user, person.getCredentials());
+    }
 
 
 }

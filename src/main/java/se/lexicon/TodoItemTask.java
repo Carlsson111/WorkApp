@@ -1,5 +1,6 @@
 package se.lexicon;
 
+
 import java.util.Objects;
 
 public class TodoItemTask {

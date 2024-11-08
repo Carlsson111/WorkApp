@@ -1,6 +1,7 @@
 package se.lexicon;
 
 
+import javax.annotation.processing.SupportedAnnotationTypes;
 import java.util.Objects;
 
 public class Person {
@@ -91,4 +92,5 @@ public class Person {
     public int hashCode() {
         return Objects.hash(id, firstName, lastName, email);
     }
+
 }

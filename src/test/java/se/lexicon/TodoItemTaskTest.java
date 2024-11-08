@@ -6,23 +6,60 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 
 public class TodoItemTaskTest {
+
     @Test
     public void testTodoItemTaskCreation() {
-        Person creator = new Person(4,"Linus", "Carlsson", "Test@test.se");
-        TodoItem todoItem = new TodoItem(4, "Change tires", "Change car tires", LocalDate.now().plusDays(1), false, creator);
-        TodoItemTask task = new TodoItemTask(4, todoItem, creator);
+        TodoItem todoItem = new TodoItem(1, "Task 1", "Description 1", LocalDate.now(), false, new Person(1, "John", "Doe", "john.doe@example.com"));
+        Person assignee = new Person(2, "Jane", "Doo", "jane.doo@example.com");
+        TodoItemTask task = new TodoItemTask(1, todoItem, assignee);
+        Assertions.assertEquals(1, task.getId());
         Assertions.assertEquals(todoItem, task.getTodoItem());
-        Assertions.assertEquals(creator, task.getAssignee());
+        Assertions.assertEquals(assignee, task.getAssignee());
         Assertions.assertTrue(task.isAssigned());
     }
 
     @Test
-    public void testTodoItemTaskCreationWithNullTodoItem() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Person creator = new Person(4,"Linus", "Carlsson", "Test@test.se");
-            new TodoItemTask(4, null, creator);
-        })
+    public void testSetAssigned() {
+        TodoItemTask task = new TodoItemTask(1, new TodoItem(1, "Task 1", "Description 1", LocalDate.now(), false,
+                new Person(1, "John", "Doe", "john.doe@example.com")),
+                new Person(2, "Jane", "Doe", "jane.doe@example.com"));
+        task.setAssigned(false);
+        Assertions.assertFalse(task.isAssigned());
+    }
 
+    @Test
+    public void testSetTodoItem() {
+        TodoItemTask task = new TodoItemTask(1, new TodoItem(1, "Task 1", "Description 1", LocalDate.now(), false, new Person(1, "Jane", "Doo", "jane.doo@example.com")), new Person(2, "Jane", "Doe", "jane.doe@example.com"));
+        TodoItem newTodoItem = new TodoItem(2, "New Task", "New Description", LocalDate.now(), false, new Person(3, "Alice", "Alison", "alice.alison@example.com"));
+        task.setTodoItem(newTodoItem);
+        Assertions.assertEquals(newTodoItem, task.getTodoItem());
+    }
 
-    ;}
+    @Test
+    public void testSetAssignee() {
+        TodoItemTask task = new TodoItemTask(1, new TodoItem(1, "Task 1", "Description 1", LocalDate.now(), false, new Person(1, "John", "Doe", "john.doe@example.com")), new Person(2, "Jane", "Doe", "jane.doe@example.com"));
+        Person newAssignee = new Person(3, "Alice", "Alison", "alice.alison@example.com");
+        task.setAssignee(newAssignee);
+        Assertions.assertEquals(newAssignee, task.getAssignee());
+        Assertions.assertTrue(task.isAssigned());
+    }
+
+    @Test
+    public void testToString() {
+        TodoItem todoItem = new TodoItem(1, "Task 1", "Description 1", LocalDate.now(), false, new Person(1, "John", "Doe", "john.doe@example.com"));
+        Person assignee = new Person(2, "Jane", "Doe", "jane.doe@example.com");
+        TodoItemTask task = new TodoItemTask(1, todoItem, assignee);
+        String expected = "TodoItemTask{todoItem=" + todoItem + ", assigned=true, id=1}";
+        Assertions.assertEquals(expected, task.toString());
+    }
+
+    @Test
+    public void testEqualsAndHashCode() {
+        TodoItem todoItem = new TodoItem(1, "Task 1", "Description 1", LocalDate.now(), false, new Person(1, "John", "Doe", "john.doe@example.com"));
+        Person assignee = new Person(2, "Jane", "Doe", "jane.doe@example.com");
+        TodoItemTask task1 = new TodoItemTask(1, todoItem, assignee);
+        TodoItemTask task2 = new TodoItemTask(1, todoItem, assignee);
+        Assertions.assertEquals(task1, task2);
+        Assertions.assertEquals(task1.hashCode(), task2.hashCode());
+    }
 }
