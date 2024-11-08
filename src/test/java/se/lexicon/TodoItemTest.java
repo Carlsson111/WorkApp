@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 
 public class TodoItemTest {
+
     @Test
     public void testTodoItemCreation() {
         Person creator = new Person(4, "Linus", "Carlsson", "Test@test.se");
