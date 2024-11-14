@@ -1,7 +1,7 @@
 package se.lexicon;
 
 
-import javax.annotation.processing.SupportedAnnotationTypes;
+
 import java.util.Objects;
 
 public class Person {
@@ -10,6 +10,11 @@ public class Person {
     private String lastName;
     private String email;
     private AppUser credentials;
+
+    public Person(String firstName, String lastName, String email) {
+        this(1, firstName, lastName, email);
+
+    }
 
     public Person(int id, String firstName, String lastName, String email) {
         if (firstName == null || firstName.isEmpty()) {
@@ -26,6 +31,7 @@ public class Person {
         this.lastName = lastName;
         this.email = email;
     }
+
 
     public int getId() {
         return id;

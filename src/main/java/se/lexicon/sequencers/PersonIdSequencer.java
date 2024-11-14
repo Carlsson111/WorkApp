@@ -12,7 +12,7 @@ public class PersonIdSequencer {
     public static PersonIdSequencer getInstance() {
         return SingletonHelper.INSTANCE;
     }
-    public int nextId() {
+    public static int nextId() {
         return ++currentId;
     }
     public int getCurrentId(){
