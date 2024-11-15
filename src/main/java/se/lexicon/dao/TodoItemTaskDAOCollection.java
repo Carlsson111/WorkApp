@@ -16,9 +16,10 @@ public class TodoItemTaskDAOCollection implements TodoItemTaskDAO{
 
 
 
+
     @Override
     public void persist(TodoItemTask todoItemTask) {
-        int id = TodoItemTaskIdSequencer.nextId();
+        int id = TodoItemTaskIdSequencer.getInstance().nextId();
         todoItemTask.setId(id);
         todoItemTaskList.add(todoItemTask);
 

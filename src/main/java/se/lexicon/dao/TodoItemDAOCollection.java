@@ -4,6 +4,7 @@ import se.lexicon.model.Person;
 import se.lexicon.model.TodoItem;
 
 import se.lexicon.sequencers.TodoItemIdSequencer;
+import se.lexicon.sequencers.TodoItemTaskIdSequencer;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class TodoItemDAOCollection implements TodoItemDAO{
 
     @Override
     public void persist(TodoItem todoItem) {
-        int id = TodoItemIdSequencer.nextId();
+        int id = TodoItemIdSequencer.getInstance().nextId();
         todoItem.setId(id);
         todoItemList.add(todoItem);
 
