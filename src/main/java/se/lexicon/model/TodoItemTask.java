@@ -3,7 +3,7 @@ package se.lexicon.model;
 
 import java.util.Objects;
 
-public class TodoItemTask {
+public class TodoItemTask { ;
     private int id;
     private boolean assigned;
     private TodoItem todoItem;
@@ -18,6 +18,14 @@ public class TodoItemTask {
         this.assignee = assignee;
         this.assigned = assignee != null;
     }
+
+    public TodoItemTask(int id, TodoItem todoItem, Person assignee, boolean assigned) {
+        this.id = id;
+        this.todoItem = todoItem;
+        this.assignee = assignee;
+        this.assigned = assigned;
+    }
+
 
     public int getId() {
         return id;
