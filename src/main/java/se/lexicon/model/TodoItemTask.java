@@ -4,7 +4,7 @@ package se.lexicon.model;
 import java.util.Objects;
 
 public class TodoItemTask {
-    private final int id;
+    private int id;
     private boolean assigned;
     private TodoItem todoItem;
     private Person assignee;
@@ -21,6 +21,10 @@ public class TodoItemTask {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public boolean isAssigned() {
