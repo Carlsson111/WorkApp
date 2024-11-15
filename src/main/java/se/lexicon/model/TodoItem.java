@@ -1,10 +1,10 @@
-package se.lexicon;
+package se.lexicon.model;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
 public class TodoItem {
-    private final int id;
+    private int id;
     private String title;
     private String description;
     private LocalDate deadLine;
@@ -28,6 +28,9 @@ public class TodoItem {
 
     public int getId() {
         return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
