@@ -3,7 +3,7 @@ package se.lexicon.dao;
 
 import org.junit.Test;
 import org.junit.Before;
-import se.lexicon.Person;
+import se.lexicon.model.Person;
 
 import static org.junit.Assert.*;
 import java.util.Collection;
