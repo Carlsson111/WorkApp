@@ -14,9 +14,8 @@ public class PersonDAOCollection implements PersonDAO {
 
     @Override
     public void persist(Person person) {
-        if (person.getId() == 1){
-            person.setId(PersonIdSequencer.nextId());
-        }
+        int id = PersonIdSequencer.nextId();
+        person.setId(id);
         persons.add(person);
     }
 

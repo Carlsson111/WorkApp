@@ -2,6 +2,7 @@ package se.lexicon.dao;
 
 import se.lexicon.model.Person;
 import se.lexicon.model.TodoItem;
+import se.lexicon.sequencers.PersonIdSequencer;
 import se.lexicon.sequencers.TodoItemIdSequencer;
 
 import java.time.LocalDate;
@@ -12,14 +13,14 @@ import java.util.Objects;
 
 public class TodoItemDAOCollection implements TodoItemDAO{
     private List<TodoItem> todoItemList= new ArrayList<>();
-    private TodoItemIdSequencer sequencer = TodoItemIdSequencer.getInstance();
 
 
     @Override
     public void persist(TodoItem todoItem) {
-        if (todoItem.getId() == 0){
-            todoItem.setId(sequencer.nextId());
-        }
+        int id = TodoItemIdSequencer.nextId();
+        todoItem.setId(id);
+        todoItemList.add(todoItem);
+
 
     }
 

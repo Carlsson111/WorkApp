@@ -2,6 +2,8 @@ package se.lexicon.dao;
 
 import se.lexicon.model.AppUser;
 import se.lexicon.model.Person;
+import se.lexicon.sequencers.PersonIdSequencer;
+import se.lexicon.sequencers.TodoItemIdSequencer;
 
 import java.util.ArrayList;
 import java.util.Collection;

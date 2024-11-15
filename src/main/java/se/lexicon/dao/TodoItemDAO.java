@@ -8,6 +8,7 @@ import java.util.Collection;
 ;
 
 public interface TodoItemDAO {
+
     void persist (TodoItem todoItem);
     TodoItem findById(int id);
     Collection<TodoItem> findAll();
