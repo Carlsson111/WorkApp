@@ -76,4 +76,5 @@ public class TodoItemTask {
     public int hashCode() {
         return Objects.hash(id, assigned, todoItem);
     }
+
 }

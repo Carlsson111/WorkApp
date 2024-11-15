@@ -12,7 +12,7 @@ public class TodoItemTaskIdSequencer {
     public static TodoItemTaskIdSequencer getInstance() {
         return TodoItemTaskIdSequencer.SingletonHelper.INSTANCE;
     }
-    public int nextId() {
+    public static int nextId() {
         return ++currentId;
     }
     public int getCurrentId(){
