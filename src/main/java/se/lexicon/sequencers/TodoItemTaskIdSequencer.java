@@ -1,7 +1,5 @@
 package se.lexicon.sequencers;
 
-import se.lexicon.TodoItemTask;
-
 public class TodoItemTaskIdSequencer {
     private static int currentId;
 

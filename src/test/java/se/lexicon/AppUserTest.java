@@ -2,6 +2,7 @@ package se.lexicon;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import se.lexicon.model.AppUser;
 
 public class AppUserTest {
 

@@ -2,6 +2,8 @@ package se.lexicon;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import se.lexicon.model.AppUser;
+import se.lexicon.model.Person;
 
 public class PersonTest {
     //Simple test with jUnit for first time

@@ -1,15 +1,15 @@
 package se.lexicon.dao;
 
-import se.lexicon.Person;
+import se.lexicon.model.Person;
 import se.lexicon.sequencers.PersonIdSequencer;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.util.Objects;
+
 
 public class PersonDAOCollection implements PersonDAO {
-    private List<Person> personList = new ArrayList<>();
+    private ArrayList<Person> persons = new ArrayList<>();
 
 
     @Override
@@ -17,12 +17,12 @@ public class PersonDAOCollection implements PersonDAO {
         if (person.getId() == 1){
             person.setId(PersonIdSequencer.nextId());
         }
-        personList.add(person);
+        persons.add(person);
     }
 
     @Override
     public Person findById(int id) {
-        for (Person person : personList)
+        for (Person person : persons)
             if (person.getId()==id){
                 return person;
             }
@@ -31,7 +31,7 @@ public class PersonDAOCollection implements PersonDAO {
 
     @Override
     public Person findByEmail(String email) {
-        for (Person person : personList) {
+        for (Person person : persons) {
             if (person.getEmail().equals(email)) {
                 return person;
             }
@@ -41,18 +41,15 @@ public class PersonDAOCollection implements PersonDAO {
 
     @Override
     public Collection<Person> findAll() {
-        return new ArrayList<>(personList);
+        return new ArrayList<>(persons);
     }
 
     @Override
     public void remove(int id) {
-        Iterator<Person> iterator = personList.iterator();
-        while (iterator.hasNext()) {
-            Person person = iterator.next();
-            if (person.getId() == id) {
-                iterator.remove();;
-                break;
-            }
+        Person toRemove = null;
+        for (Person person : persons){
+            if(Objects.equals(person.getId(), id)) toRemove = person;
         }
+        if (toRemove != null) persons.remove(toRemove);
     }
 }
