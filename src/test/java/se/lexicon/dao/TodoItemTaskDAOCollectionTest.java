@@ -69,8 +69,12 @@ public class TodoItemTaskDAOCollectionTest {
 
     @Test
     public void remove() {
-        TodoItemTask todoItemTask = new TodoItemTask(0, todoItem, assignee, true); todoItemTaskDAO.persist(todoItemTask);
-        todoItemTaskDAO.remove(todoItemTask.getId());
-        assertEquals(0, todoItemTaskDAO.findAll().size());
+        TodoItemTask todoItemTask1 = new TodoItemTask(0, todoItem, assignee, true);
+        TodoItemTask todoItemTask2 = new TodoItemTask(1, todoItem, assignee, true);
+        todoItemTaskDAO.persist(todoItemTask1);
+        todoItemTaskDAO.persist(todoItemTask2);
+
+        todoItemTaskDAO.remove(todoItemTask1.getId());
+        assertEquals(1, todoItemTaskDAO.findAll().size());
     }
 }
