@@ -9,7 +9,7 @@ public class TodoItem {
     private String description;
     private LocalDate deadLine;
     private boolean done;
-    private Person creator;
+    private Person assignee;
 
     public TodoItem(int id, String title, String description, LocalDate deadLine, boolean done, Person creator) {
         if (title == null || title.isEmpty()) {
@@ -23,7 +23,7 @@ public class TodoItem {
         this.description = description;
         this.deadLine = deadLine;
         this.done = done;
-        this.creator = creator;
+        this.assignee = creator;
     }
 
     public int getId() {
@@ -71,12 +71,12 @@ public class TodoItem {
         this.done = done;
     }
 
-    public Person getCreator() {
-        return creator;
+    public Person getAssignee() {
+        return assignee;
     }
 
-    public void setCreator(Person creator) {
-        this.creator = creator;
+    public void setAssignee(Person assignee) {
+        this.assignee = assignee;
     }
 
     public boolean isOverdue() {
@@ -86,25 +86,25 @@ public class TodoItem {
     @Override
     public String toString() {
         return "TodoItem{" +
-                "done=" + done +
-                ", deadLine=" + deadLine +
-                ", description='" + description + '\'' +
+                "id=" + id +
                 ", title='" + title + '\'' +
-                ", id=" + id +
+                ", description='" + description + '\'' +
+                ", deadLine=" + deadLine +
+                ", done=" + done +
+                ", assignee=" + assignee +
                 '}';
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TodoItem todoItem = (TodoItem) o;
-        return id == todoItem.id && done == todoItem.done && Objects.equals(title, todoItem.title) && Objects.equals(description, todoItem.description) && Objects.equals(deadLine, todoItem.deadLine);
+        return id == todoItem.id && done == todoItem.done && Objects.equals(title, todoItem.title) && Objects.equals(description, todoItem.description) && Objects.equals(deadLine, todoItem.deadLine) && Objects.equals(assignee, todoItem.assignee);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, description, deadLine, done);
+        return Objects.hash(id, title, description, deadLine, done, assignee);
     }
 }
 
