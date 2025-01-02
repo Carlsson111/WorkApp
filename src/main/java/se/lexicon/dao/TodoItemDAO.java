@@ -1,6 +1,7 @@
 package se.lexicon.dao;
 
 import se.lexicon.model.TodoItem;
+import se.lexicon.model.Person;
 
 
 import java.time.LocalDate;
@@ -9,15 +10,15 @@ import java.util.Collection;
 
 public interface TodoItemDAO {
 
-    void persist (TodoItem todoItem);
-    TodoItem findById(int id);
+    TodoItem create(TodoItem todo);
     Collection<TodoItem> findAll();
-    Collection<TodoItem> findAllByDoneStatus(boolean done);
-    Collection<TodoItem> findByTitleContains(String title);
-    Collection<TodoItem> findByPersonId(int personId);
-    Collection<TodoItem>findByDeadlineBefore(LocalDate deadline);
-    Collection<TodoItem> findByDeadlineAfter(LocalDate deadline);
-    void remove (int id);
+    TodoItem findById(int id);
+    Collection<TodoItem> findByDoneStatus(boolean done);
+    Collection<TodoItem> findByAssignee(int personId);
+    Collection<TodoItem> findByAssignee(Person assignee);
+    Collection<TodoItem> findByUnassignedTodoItems();
+    TodoItem update(TodoItem todo);
+    boolean deleteById(int id);
 
 
 }

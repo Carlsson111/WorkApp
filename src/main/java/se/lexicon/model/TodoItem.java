@@ -11,7 +11,7 @@ public class TodoItem {
     private boolean done;
     private Person assignee;
 
-    public TodoItem(int id, String title, String description, LocalDate deadLine, boolean done, Person creator) {
+    public TodoItem(int id, String title, String description, LocalDate deadLine, boolean done, Person assignee) {
         if (title == null || title.isEmpty()) {
             throw new IllegalArgumentException("Title cannot be null or empty");
         }
@@ -23,7 +23,7 @@ public class TodoItem {
         this.description = description;
         this.deadLine = deadLine;
         this.done = done;
-        this.assignee = creator;
+        this.assignee = assignee;
     }
 
     public int getId() {
