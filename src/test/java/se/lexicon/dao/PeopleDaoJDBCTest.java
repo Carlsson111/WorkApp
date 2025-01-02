@@ -12,12 +12,12 @@ import java.util.Collection;
 
 
 
-public class PersonDAOCollectionTest {
+public class PeopleDaoJDBCTest {
     private PersonDAO personDAO;
 
     @Before
     public void setUp(){
-        personDAO = new PersonDAOCollection();
+        personDAO = new PeopleDaoJDBC();
 
     }
 
