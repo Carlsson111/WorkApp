@@ -79,7 +79,7 @@ public class TodoItemDAOJDBC implements TodoItemDAO{
 
     @Override
     public TodoItem findById(int id) {
-        String query = "SELECT * FROM todo_item WHERE id = ?";
+        String query = "SELECT * FROM todo_item WHERE todo_id = ?";
         try (
                 Connection connection = getConnection();
                 PreparedStatement statement = connection.prepareStatement(query))
