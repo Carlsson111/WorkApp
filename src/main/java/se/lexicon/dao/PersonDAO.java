@@ -4,7 +4,7 @@ import se.lexicon.model.Person;
 
 import java.util.Collection;
 
-public interface PersonDAO {
+// public interface PersonDAO {
     void persist(Person person);
     Person findById(int id);
     Person findByEmail(String Email);

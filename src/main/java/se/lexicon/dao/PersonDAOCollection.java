@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 
-public class PersonDAOCollection implements PersonDAO {
+//public class PersonDAOCollection implements PersonDAO {
     private ArrayList<Person> persons = new ArrayList<>();
 
 
