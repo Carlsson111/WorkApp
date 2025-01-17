@@ -4,7 +4,7 @@ import se.lexicon.model.Person;
 
 import java.util.Collection;
 
-public interface PeopleDao {
+public interface People {
     Person create(Person person);
     Collection<Person> findAll();
     Person findById(int id);

@@ -8,7 +8,7 @@ public class TodoItem {
     private String title;
     private String description;
     private LocalDate deadLine;
-    private boolean done;
+    private boolean done = false;
     private Person assignee;
 
     public TodoItem(String title, String description, LocalDate deadLine, boolean done, Person assignee) {

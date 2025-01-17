@@ -1,7 +1,7 @@
 package se.lexicon;
 
-import se.lexicon.dao.PeopleDao;
-import se.lexicon.dao.PeopleDaoJDBC;
+import se.lexicon.dao.People;
+import se.lexicon.dao.PeopleJDBC;
 import se.lexicon.dao.TodoItemDAO;
 import se.lexicon.dao.TodoItemDAOJDBC;
 import se.lexicon.db.MySQLConnection;
@@ -15,20 +15,20 @@ import java.util.Collection;
 public class Main {
     public static void main(String[] args) {
         Connection connection = MySQLConnection.getConnection();
-        PeopleDao peopleDao = new PeopleDaoJDBC();
-        TodoItemDAO todoItemDAO = new TodoItemDAOJDBC(peopleDao);
+        People people = new PeopleJDBC();
+        TodoItemDAO todoItemDAO = new TodoItemDAOJDBC(people);
 
         // Test creating a Person
         Person person1 = new Person(0, "Fredrick", "Doe");
-        person1 = peopleDao.create(person1);
+        person1 = people.create(person1);
         System.out.println("Created Person: " + person1);
 
         //Test finding all Persons
-        Collection<Person> allPersons = peopleDao.findAll();
+        Collection<Person> allPersons = people.findAll();
         System.out.println("All Persons: " + allPersons);
 
         // Test finding a Person by ID
-        Person foundPerson = peopleDao.findById(person1.getId());
+        Person foundPerson = people.findById(person1.getId());
         System.out.println("Found Person by ID: " + foundPerson);
 
         // Test creating a TodoItem

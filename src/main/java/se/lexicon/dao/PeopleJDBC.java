@@ -1,18 +1,15 @@
 package se.lexicon.dao;
 
 import se.lexicon.model.Person;
-import se.lexicon.sequencers.PersonIdSequencer;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
 
 import static se.lexicon.db.MySQLConnection.getConnection;
 
 
-public class PeopleDaoJDBC implements PeopleDao {
+public class PeopleJDBC implements People {
     private Connection connection;
 
     @Override

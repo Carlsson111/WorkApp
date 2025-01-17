@@ -6,16 +6,15 @@ import se.lexicon.model.TodoItem;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import static se.lexicon.db.MySQLConnection.getConnection;
 
 public class TodoItemDAOJDBC implements TodoItemDAO{
-    private PeopleDao peopleDao;
+    private People people;
     private Connection connection;
 
-    public TodoItemDAOJDBC(PeopleDao peopleDao) {
-        this.peopleDao = peopleDao;
+    public TodoItemDAOJDBC(People people) {
+        this.people = people;
     }
 
     @Override
@@ -37,7 +36,7 @@ public class TodoItemDAOJDBC implements TodoItemDAO{
             statement.executeUpdate();
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
-                    todo.setId(generatedKeys.getInt(1));
+                    todo.setId(generatedKeys.getInt("todo_id"));
                 }
             }
         } catch (SQLException ex) {
@@ -59,7 +58,7 @@ public class TodoItemDAOJDBC implements TodoItemDAO{
                 Person assignee = null;
                 int assigneeId = rs.getInt("assignee_id");
                 if (assigneeId != 0) {
-                    assignee = peopleDao.findById(assigneeId); //Test
+                    assignee = people.findById(assigneeId); //Test
                 }
                 todos.add(new TodoItem( rs.getInt("todo_id"),
                         rs.getString("title"),
@@ -90,12 +89,12 @@ public class TodoItemDAOJDBC implements TodoItemDAO{
                     Person assignee = null;
                     int assigneeId = resultSet.getInt("assignee_id");
                     if (assigneeId != 0) {
-                        assignee = peopleDao.findById(assigneeId);
+                        assignee = people.findById(assigneeId);
                     }
                     return new TodoItem(
-                            resultSet.getInt("Id"),
-                            resultSet.getString("Title"),
-                            resultSet.getString("Description"),
+                            resultSet.getInt("todo_id"),
+                            resultSet.getString("title"),
+                            resultSet.getString("description"),
                             resultSet.getDate("deadline").toLocalDate(),
                             resultSet.getBoolean("done"),
                             assignee
@@ -122,12 +121,12 @@ public class TodoItemDAOJDBC implements TodoItemDAO{
                     Person assignee = null;
                     int assigneeId = resultSet.getInt("assignee_id");
                     if (assigneeId != 0) {
-                        assignee = peopleDao.findById(assigneeId);
+                        assignee = people.findById(assigneeId);
                     }
                     items.add(new TodoItem(
-                            resultSet.getInt("id"),
-                            resultSet.getString("Title"),
-                            resultSet.getString("Description"),
+                            resultSet.getInt("todo_id"),
+                            resultSet.getString("title"),
+                            resultSet.getString("description"),
                             resultSet.getDate("deadline").toLocalDate(),
                             resultSet.getBoolean("done"),
                             assignee
@@ -151,11 +150,11 @@ public class TodoItemDAOJDBC implements TodoItemDAO{
             statement.setInt(1, personId);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Person assignee = peopleDao.findById(personId); //peopledao
+                    Person assignee = people.findById(personId); //peopledao
                     items.add(new TodoItem(
-                            resultSet.getInt("id"),
-                            resultSet.getString("Title"),
-                            resultSet.getString("Description"),
+                            resultSet.getInt("todo_id"),
+                            resultSet.getString("title"),
+                            resultSet.getString("description"),
                             resultSet.getDate("deadline").toLocalDate(),
                             resultSet.getBoolean("done"),
                             assignee
@@ -186,7 +185,7 @@ public class TodoItemDAOJDBC implements TodoItemDAO{
         {
             while (resultSet.next()) {
                 items.add(new TodoItem(
-                        resultSet.getInt("id"),
+                        resultSet.getInt("todo_id"),
                         resultSet.getString("title"),
                         resultSet.getString("description"),
                         resultSet.getDate("deadline").toLocalDate(),
@@ -203,7 +202,7 @@ public class TodoItemDAOJDBC implements TodoItemDAO{
 
     @Override
     public TodoItem update(TodoItem todo) {
-        String query = "UPDATE todo_item SET title = ?, description = ?, deadline = ?, done = ?, assignee_id = ? WHERE id = ?";
+        String query = "UPDATE todo_item SET title = ?, description = ?, deadline = ?, done = ?, assignee_id = ? WHERE todo_id = ?";
         try (
                 Connection connection = getConnection();
                 PreparedStatement statement = connection.prepareStatement(query))
@@ -228,7 +227,7 @@ public class TodoItemDAOJDBC implements TodoItemDAO{
 
     @Override
     public boolean deleteById(int id) {
-        String query = "DELETE FROM todo_item WHERE id = ?";
+        String query = "DELETE FROM todo_item WHERE todo_id = ?";
         try (
                 Connection connection = getConnection();
                 PreparedStatement statement = connection.prepareStatement(query))
